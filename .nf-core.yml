@@ -9,9 +9,9 @@ lint:
     - .prettierignore
     - .prettierignore
     - CODE_OF_CONDUCT.md
-    - assets/nf-core-tspc-test_logo_light.png
-    - docs/images/nf-core-tspc-test_logo_light.png
-    - docs/images/nf-core-tspc-test_logo_dark.png
+    - assets/nf-core-tspc_logo_light.png
+    - docs/images/nf-core-tspc_logo_light.png
+    - docs/images/nf-core-tspc_logo_dark.png
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/CONTRIBUTING.md
     - .github/PULL_REQUEST_TEMPLATE.md
@@ -38,9 +38,9 @@ lint:
     - assets/sendmail_template.txt
     - assets/email_template.txt
     - CODE_OF_CONDUCT.md
-    - assets/nf-core-tspc-test_logo_light.png
-    - docs/images/nf-core-tspc-test_logo_light.png
-    - docs/images/nf-core-tspc-test_logo_dark.png
+    - assets/nf-core-tspc_logo_light.png
+    - docs/images/nf-core-tspc_logo_light.png
+    - docs/images/nf-core-tspc_logo_dark.png
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
@@ -56,9 +56,9 @@ lint:
 
 template:
   org: tanevskilab
-  name: tspc-test
-  description: Hello
-  author: Sebastian
+  name: tspc
+  description: Pipeline for processing and analysis of whole-slide immunofluorescence data.
+  author: Sebastián González Tirado
   version: 0.0.1
   force: true
   outdir: .

@@ -1,5 +1,5 @@
 //
-// Subworkflow with functionality specific to the tanevskilab/tspc-test pipeline
+// Subworkflow with functionality specific to the tanevskilab/tspc pipeline
 //
 
 /*

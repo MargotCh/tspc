@@ -1,0 +1,25 @@
+process CELLPOSESAM {
+    label 'process_gpu'
+    container "/home/hd/hd_hd/hd_dy329/singularity_images/cp-sam.sif"
+
+    input:
+    tuple val(meta), path(image)
+
+    output:
+    //stdout()
+    tuple val(meta), path("*.tif*"), emit: mask
+
+    script:
+    """
+    export HOME=\$PWD
+    python -m cellpose --use_gpu --image_path $image --save_tif --flow_threshold 0
+    """
+}
+//python -m cellpose --image_path $image --save_tif -verbose
+//python -c "print('Hello, World!')"
+// export CELLPOSE_HOME=/gpfs/bwfor/work/ws/hd_dy329-tspc/tspc-pipeline
+// --pretrained_model /gpfs/bwfor/work/ws/hd_dy329-tspc/tspc-pipeline/cpsam_20250915_7 \
+// --save_tif \
+// --use_gpu
+//     python -c "import torch; print(torch.cuda.is_available())" > gpu_avail.txt
+

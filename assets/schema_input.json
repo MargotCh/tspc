@@ -13,21 +13,22 @@
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
                 "meta": ["id"]
             },
-            "fastq_1": {
+            "image_path": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^\\S+\\.(tif|tiff)$",
+                "errorMessage": "Raw image or backsubed image must be provided, cannot contain spaces and must have extension '.tif' or '.tiff'"
             },
-            "fastq_2": {
+            "markersheet": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
-            }
+                "pattern": "^\\S+\\.(csv)$",
+                "errorMessage": "Markersheet file must be provided"
+            },
         },
-        "required": ["sample", "fastq_1"]
+        },
+        "required": ["sample", "markersheet"]
     }
 }

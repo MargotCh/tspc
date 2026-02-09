@@ -120,5 +120,16 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "channels_projection_list": {
+            "type": "string",
+            "default": "1,2,3",
+            "description": "Comma-separated string with channels to project using python indexing"
+        },
+        "do_backsub": {
+            "type": "boolean",
+            "default": true
+        }
+    }
 }

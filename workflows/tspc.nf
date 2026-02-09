@@ -9,6 +9,11 @@ include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pi
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_tspc_pipeline'
 
+include { BACKSUB } from '../modules/nf-core/backsub/main'
+include { MAX_PROJECTION } from '../modules/local/max_projection/main'
+include { PRINT_TEST } from '../modules/local/print_test/main'
+include { CELLPOSESAM } from '../modules/local/cellposesam/main'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -35,6 +40,53 @@ workflow TSPC {
             newLine: true
         ).set { ch_collated_versions }
 
+    //ch_samplesheet.view()
+
+    image_tuple = ch_samplesheet
+            .map {meta, image ->
+                [[id: meta.id], image[0]]}
+
+    //    image_tuple.view()
+
+    markersheet_tuple = ch_samplesheet
+        .map {meta, image ->
+            [[id: meta.id], image[1]]}
+
+    //    markersheet_tuple.view()
+
+    //channels_projection = ch_samplesheet
+    //    .map {meta, image -> 
+    //        [[id: meta.id], image[2]]}
+
+    //channels_projection.view()
+    //
+    // MODULE: BACKSUB
+    //
+    // Sometimes the microscope already does background subtraction on the data, so it can be skiped:
+
+    if (params.do_backsub) {
+        BACKSUB(image_tuple, markersheet_tuple)
+    } else {
+        println "Skipping background subtraction as per user request (params.do_backsub = false)"
+    }
+
+    //BACKSUB.out.backsub_tif.view()
+
+    PRINT_TEST(params.channels_projection_list)
+
+    //
+    // MODULE: MAX_PROJECTION
+    //
+    if (params.do_backsub) { 
+        MAX_PROJECTION(BACKSUB.out.backsub_tif, params.channels_projection_list)
+    } else {
+        MAX_PROJECTION(image_tuple, params.channels_projection_list)
+    }
+
+    //
+    // Cellpose-SAM segmentation
+    //
+    CELLPOSESAM(MAX_PROJECTION.out.max_proj_img)
 
     //
     // MODULE: MultiQC

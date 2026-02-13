@@ -1,6 +1,6 @@
 process BACKSUB {
     tag "$meta.id"
-    label 'process_single'
+    label 'process_high'
 
     conda "${moduleDir}/environment.yml"
     container "ghcr.io/schapirolabor/background_subtraction:v0.5.1"

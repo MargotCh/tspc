@@ -8,11 +8,13 @@ process CELLPOSESAM {
     output:
     //stdout()
     tuple val(meta), path("*.tif*"), emit: mask
+    path("*.txt*")
 
     script:
     """
     export HOME=\$PWD
     python -m cellpose --use_gpu --image_path $image --save_tif --flow_threshold 0
+    python -c "import torch; print(torch.cuda.is_available())" > gpu_avail.txt
     """
 }
 //python -m cellpose --image_path $image --save_tif -verbose

@@ -13,7 +13,7 @@
 
 ## Introduction
 
-**tanevskilab/tspc** is a bioinformatics pipeline that ...
+**tanevskilab/tspc** is a customizable bioimage analysis pipeline designed to quantify immunofluorescence data. 
 
 <!-- TODO nf-core:
    Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
@@ -45,6 +45,22 @@ CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
 Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
 
 -->
+### Step-by-step guide
+
+1. Download the repo :)
+
+2. Understand a couple of parameters and files. These need to be modified in the `nextflow.config` file before executing the pipeline. 
+
+   2a. First of all set the `do_backsub` parameter (default: true).
+
+   2b. Select channels for maximum intensity projection in the `channels_projection_list` parameter. Currently, the Cellpose-SAM model works on two channels (generally DAPI + extra channel). The algorithm performs better when giving an informative extra channel. This could be only one or a maximum projection of as many additional markers from your multiplexed data. Decide this depending your needs and be aware that the indexing follows the pythonic way (meaning first channel, generally DAPI, has index 0).
+
+   2c. Your input file need to have the path of your input data and the path of the file with the information needed for backsub. You can find an example of these two files inside the `example_files` directory of the repository. 
+
+3. That should be it for now. To use the pipeline in Helix, submit a SLURM job with the appropriate changes to the `submit_workflow2slurm_wsi_directgpu.sh` file:
+
+      `$ sbatch submit_workflow2slurm_wsi_directgpu.sh`
+
 
 Now, you can run the pipeline using:
 

@@ -1,6 +1,7 @@
 process CELLPOSESAM {
     label 'process_gpu'
-    container "/home/hd/hd_hd/hd_dy329/singularity_images/cp-sam.sif"
+    container "/gpfs/bwfor/work/ws/hd_dy329-tspc/cp-sam.sif"
+    //container "/home/hd/hd_hd/hd_dy329/singularity_images/cp-sam.sif"
 
     input:
     tuple val(meta), path(image)

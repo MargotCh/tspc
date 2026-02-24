@@ -1,0 +1,2 @@
+sample,image_path,markersheet
+nsclc_wsi,/gpfs/bwfor/work/ws/hd_dy329-tspc/test_data_wsi_tspc_workflow/20251202_10_R1172_2013_Panel2_TRITC_backsub.ome.tiff,/gpfs/bwfor/work/ws/hd_dy329-tspc/test_data_wsi_tspc_workflow/markers_nsclc_backsub.csv

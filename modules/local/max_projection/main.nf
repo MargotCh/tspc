@@ -2,7 +2,7 @@ pythonScript = "${workflow.projectDir}/bin/max_projection.py"
 
 process MAX_PROJECTION {
     label 'process_high_memory'
-    container "/home/hd/hd_hd/hd_dy329/singularity_images/ghcr.io-schapirolabor-background_subtraction-v0.5.1.img"
+    container "ghcr.io/schapirolabor/background_subtraction:v0.5.1"
 
     input:
     tuple val(meta), path(image)

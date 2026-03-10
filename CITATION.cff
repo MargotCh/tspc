@@ -1,0 +1,30 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: tspc
+message: >-
+  Pipeline for processing and quantification of
+  immunofluorescence data.
+type: software
+authors:
+  - given-names: Sebastián
+    family-names: González Tirado
+    email: sebastian.gonzalez@uni-heidelberg.de
+    affiliation: Heidelberg University Hospital
+    orcid: 'https://orcid.org/0000-0002-3093-2402'
+repository-code: 'https://github.com/tanevskilab/tspc'
+abstract: >-
+  Bioimage analysis pipeline that quantifies protein marker
+  intensities in large-scale images. The workflow uses the
+  nf-core template, which provides a robust framework for
+  testing and deployment, as well as a modular environment
+  that can be adapted to both upstream and downstream tasks.
+keywords:
+  - Spatial proteomics
+  - Immunofluorescence
+  - Whole-slide
+license: MIT
+commit: 1c14731596cc6b57e2d2e6100f429e320c5895bf
+version: v0.0.1
+date-released: '2026-03-10'

@@ -13,6 +13,7 @@ include { BACKSUB } from '../modules/nf-core/backsub/main'
 include { MAX_PROJECTION } from '../modules/local/max_projection/main'
 include { PRINT_TEST } from '../modules/local/print_test/main'
 include { CELLPOSESAM } from '../modules/local/cellposesam/main'
+include { MCQUANT } from '../modules/nf-core/mcquant/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -87,6 +88,12 @@ workflow TSPC {
     // Cellpose-SAM segmentation
     //
     CELLPOSESAM(MAX_PROJECTION.out.max_proj_img)
+
+    //
+    // Mcquant
+    //
+    MCQUANT(BACKSUB.out.backsub_tif, CELLPOSESAM.out.mask, markersheet_tuple)
+    // mc_quant_ch = MCQUANT(backsub_img[0], cellpose_ch, markers_nsclc_ch)
 
     //
     // MODULE: MultiQC
